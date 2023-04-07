@@ -4,7 +4,7 @@
      "description": "this is a introduction to node project and learning",
      "main" : "main.js",
     "scripts": {
-       "build": "echo \"No build specified\" && exit 1",
+       "build": "npm install \"No build specified\" && exit 1",
         "test": "echo \"No test specified\" && exit 1",
         "start": "node main.js"
       },
