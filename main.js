@@ -9,7 +9,7 @@ const _ = require("lodash");
 
 
 const app = express();
-// const PORT = process.env.PORT || 3000;
+ const PORT = process.env.PORT || 3000;
 app.set('view engine' , 'ejs');
 
 app.use(bodyParser.urlencoded({extended:true}));
@@ -18,12 +18,13 @@ app.use(express.static("public"));
 
 
 // connection to the db
-mongoose.connect('mongodb+srv://benkuyutech65:mazala_02@cluster0.yeoprmc.mongodb.net/todoListDB', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('MongoDB connected!');
   })
   .catch(err => {
     console.log(`MongoDB connection error: ${err}`);
+    process.exit(1);
   });
 
 // construction of a schema 
@@ -183,4 +184,4 @@ List.findOne({ name:customListName})
   
 });
 
-app.listen(3000, () => { console.log("the server starts on 3000 port"); });
+app.listen(PORT, () => { console.log("the server starts on 3000 port"); });
